@@ -7,10 +7,37 @@
  * @licence MIT
  */
 
-$('*[data-form-group]').each(function() {
+$.fn.formReplicator = function( groupName, options ) {
 
-    var group = $(this),
-        groupName = group.data('form-group');
+    if(groupName === undefined)
+        return false;
+
+    /**
+     * Default settings
+     */
+
+    var settings = $.extend({
+
+        firstItemUndeletable: true,
+        onHide: function(item) {
+
+            item.fadeOut(function () {
+
+                $(this).remove();
+            });
+        },
+        onShow: function(item) {
+
+            item.fadeIn();
+        }
+
+    }, options);
+
+    /**
+     * Now the plugin core
+     */
+
+    var group = this;
     var groupItems = group.find('[data-group-item]');
     var addGroupItem = group.find('[data-group-add-item]');
     var index = 0;
@@ -26,6 +53,9 @@ $('*[data-form-group]').each(function() {
      */
 
     groupItems.each(function(_i) {
+
+        if(settings.firstItemUndeletable && _i === 0)
+            $(this).find('[data-group-remove-item]').hide();
 
         $(this).find('select, input, textarea').each(function() {
 
@@ -62,20 +92,20 @@ $('*[data-form-group]').each(function() {
 
                     e.preventDefault();
 
-                    newItem.remove();
+                    settings.onHide(newItem);
                 });
+
+                newItem.hide();
 
                 inner.append(newItem);
 
-                index++;
+                settings.onShow(newItem);
 
+                index++;
             }
 
         });
     }
 
-    /**
-     *
-     */
+};
 
-});
