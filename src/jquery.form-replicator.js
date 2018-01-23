@@ -42,7 +42,9 @@ $('*[data-form-group]').each(function() {
 
     if(addGroupItem.length > 0) {
 
-        addGroupItem.on('click', function() {
+        addGroupItem.on('click', function(e) {
+
+            e.preventDefault();
 
             var inner = group.find('[data-group-inner]');
 
@@ -56,7 +58,9 @@ $('*[data-form-group]').each(function() {
                     $(this).attr('name', groupName + '[' + index + '][' + $(this).attr('name') + ']');
 
                 });
-                newItem.find('[data-group-remove-item]').click(function() {
+                newItem.find('[data-group-remove-item]').on('click', function(e) {
+
+                    e.preventDefault();
 
                     newItem.remove();
                 });
