@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form replicator example</title>
+</head>
+<body>
+
+    <div data-form-group="invoice-items">
+
+        <div data-group-inner>
+
+            <div data-group-item>
+
+                <label for="name">Zadejte Vaše jméno</label>
+
+                <br>
+
+                <input type="text" name="name" id="name">
+
+                <br>
+                <br>
+
+                <label>Zadejte Vaše Příjmení</label>
+
+                <br>
+
+                <input type="text" name="surename">
+
+                <br>
+                <br>
+
+                <a href="#" data-group-remove-item>Odstranit</a>
+
+                <br>
+                <br>
+
+            </div>
+
+        </div>
+
+        <a href="#" data-group-add-item>Přidat řádek</a>
+
+    </div>
+
+    <div data-form-group="invoice-items-2">
+
+        Test
+
+    </div>
+
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="src/jquery.form-replicator.js"></script>
+</body>
+</html>

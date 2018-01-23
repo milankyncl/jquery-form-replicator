@@ -1,0 +1,14 @@
+{
+    "name": "jquery-form-replicator",
+    "version": "0.1.0",
+    "description": "jQuery Form Replicator",
+    "author": {
+        "name": "Milan Kyncl",
+        "email": "kontakt@milankyncl.cz",
+        "url": "https://www.milankyncl.cz"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "jquery": "^3.2.1"
+    }
+}
