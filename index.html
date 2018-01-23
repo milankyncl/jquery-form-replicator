@@ -50,9 +50,22 @@
     </div>
 
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="src/jquery.form-replicator.js"></script>
+    <script type="text/javascript" src="jquery.form-replicator.min.js"></script>
     <script>
-        $('.invoice-items').formReplicator('invoice-items');
+        $('.invoice-items').formReplicator('invoice-items', {
+            firstItemUndeletable: false,
+            onHide: function(item) {
+
+                item.fadeOut(function () {
+
+                    $(this).remove();
+                });
+            },
+            onShow: function(item) {
+
+                item.fadeIn();
+            }
+        });
     </script>
 </body>
 </html>

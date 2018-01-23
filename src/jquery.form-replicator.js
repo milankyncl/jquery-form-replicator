@@ -18,7 +18,7 @@ $.fn.formReplicator = function( groupName, options ) {
 
     var settings = $.extend({
 
-        firstItemUndeletable: true,
+        firstItemUndeletable: false,
         onHide: function(item) {
 
             item.fadeOut(function () {
@@ -54,13 +54,21 @@ $.fn.formReplicator = function( groupName, options ) {
 
     groupItems.each(function(_i) {
 
+        var item = $(this);
+
         if(settings.firstItemUndeletable && _i === 0)
-            $(this).find('[data-group-remove-item]').hide();
+            item.find('[data-group-remove-item]').hide();
 
-        $(this).find('select, input, textarea').each(function() {
+        item.find('select, input, textarea').each(function() {
 
-            $(this).attr('name', groupName + '[' + _i + '][' + $(this).attr('name') + ']');
+            item.attr('name', groupName + '[' + _i + '][' + item.attr('name') + ']');
+        });
 
+        item.find('[data-group-remove-item]').on('click', function(e) {
+
+            e.preventDefault();
+
+            settings.onHide(item);
         });
 
         index++;
@@ -86,6 +94,7 @@ $.fn.formReplicator = function( groupName, options ) {
                 newItem.find('select, input, textarea').each(function() {
 
                     $(this).attr('name', groupName + '[' + index + '][' + $(this).attr('name') + ']');
+                    $(this).val('');
 
                 });
                 newItem.find('[data-group-remove-item]').on('click', function(e) {
